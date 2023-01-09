@@ -17,7 +17,7 @@ yq -i ".tap_gui.app_config.auth.providers.github.development.clientId = \"${CLIE
 yq -i ".tap_gui.app_config.auth.providers.github.development.clientSecret = \"${CLIENTSECRET}\"" /tmp/tap-values.yaml
 yq -i '.tap_gui.app_config.integrations.github[0].host = "github.com"' /tmp/tap-values.yaml
 yq -i '.tap_gui.app_config.auth.allowGuestAccess = true' /tmp/tap-values.yaml
-# yq -i '.tap_gui.app_config.gitProviders.active = true' /tmp/tap-values.yaml
+yq -i '.tap_gui.app_config.gitProviders.active = true' /tmp/tap-values.yaml
 
 cat /tmp/tap-values.yaml
 
