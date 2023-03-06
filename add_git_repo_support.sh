@@ -4,6 +4,12 @@ set -euo pipefail
 
 source ${HOME}/.git_repo_creds
 
+# Check if yq is installed
+if ! command -v yq &> /dev/null; then
+    echo "Please first install yq before running this script: brew install yq"
+    exit
+fi
+
 # Parenthesis create an array that's split on spaces
 OUTPUT=($(tanzu package installed list -n tap-install | grep -i "tap.tanzu.vmware.com"))
 VERSION=${OUTPUT[2]}

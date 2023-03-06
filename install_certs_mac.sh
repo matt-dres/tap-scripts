@@ -6,6 +6,12 @@ set -euo pipefail
 # Simple bash script to retrieve the selfsigned cert from TAP and install it locally on macOS
 #####
 
+# Check if yq is installed
+if ! command -v yq &> /dev/null; then
+    echo "Please first install yq before running this script: brew install yq"
+    exit
+fi
+
 echo "--- Fetching TAP Ingress Certificate ---"
 kubectl get secret -n cert-manager tap-ingress-selfsigned-root-ca -o yaml | yq '.data."ca.crt"' | base64 -d > ca.crt
 ### Use the openssl command below to verify the cert if issues arise
